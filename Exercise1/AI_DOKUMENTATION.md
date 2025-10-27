@@ -1,7 +1,7 @@
 # Dokumentation zur Nutzung von Generativer KI
 
 Projekt: Exercise 1 – Kritischer Pfad (CPM)  
-Autor: <Ihr Name eintragen>  
+Autor: <Leonidas Katsaitis>  
 Datum: 2025-10-27
 
 ## Zweck dieser Datei
@@ -9,12 +9,10 @@ Diese Datei dokumentiert, wo und wie ein Generative-AI-Assistent bei der Bearbei
 
 ## Umfang der KI-Unterstützung
 Der KI‑Assistent wurde eingesetzt für:
-- technische Ausarbeitung der CPM-Logik (Vorwärts-/Rückwärtsrechnung mit ES/EF/LS/LF und Pufferzeit) inklusive topologischer Sortierung,
-- Umbenennung und Bereinigung der Modulstruktur (snake_case: `critical_path.py`),
+- technische Ausarbeitung der CPM-Logik (Vorwärts-/Rückwärtsrechnung mit ES/EF/LS/LF und Pufferzeit) inklusive topologischer Sortierung
 - Erstellung und Anpassung von Unit-Tests (Pytest) für ein Minimalbeispiel und den Aufgaben-Netzplan (A01..A16),
 - kleine API-Erweiterung (`project_duration()`),
-- Ergänzung einer kurzen README mit Ausführungs- und Testhinweisen (PowerShell),
-- Aufräumen irrelevanter Dateien (Duplikatmodul, `__pycache__`).
+- Ergänzung einer kurzen README mit Ausführungs- und Testhinweisen (PowerShell)
 
 Nicht durch KI übernommen: Fachliche Bewertung der Ergebnisse, finaler Review der Berechnungen, Entscheidung über die akzeptierte Modellierung. Diese Schritte wurden manuell überprüft.
 
@@ -80,4 +78,4 @@ Führen Sie die folgenden Befehle aus dem Repo-Root in Windows PowerShell aus:
 ```
 
 ## Kontakt / Editierhinweis
-Tragen Sie oben Ihren Namen ein und passen Sie diese Datei an, falls spätere Änderungen vorgenommen wurden (z. B. neue Tests, weitere KI-Einsätze).
+Leonidas Katsaitis , st108535@stud.uni-stuttgart.de
