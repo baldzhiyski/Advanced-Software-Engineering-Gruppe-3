@@ -102,13 +102,4 @@ public class Frame {
         return secondRoll;
     }
 
-
-    /**
-     * Gets the score of the third roll.
-     *
-     * @return the score of the third roll
-     */
-    public int getThirdRoll() {
-        return thirdRoll;
-    }
 }

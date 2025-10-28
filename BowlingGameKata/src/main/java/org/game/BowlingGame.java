@@ -43,6 +43,9 @@ public class BowlingGame {
         return calculateTotalScore(bonus);
     }
 
+    /*
+     * Private helper methods
+     */
 
     /**
      * Calculates the total score including bonuses.
@@ -63,13 +66,13 @@ public class BowlingGame {
      */
     private int calculateBonus() {
         int bonus = 0;
-        for (int j = 0; j < frames.size(); j++) {
-            Frame currentFrame = frames.get(j);
+        for (int frameIndex = 0; frameIndex < frames.size(); frameIndex++) {
+            Frame currentFrame = frames.get(frameIndex);
 
             if (currentFrame.isSpare()) {
-                bonus += calculateSpareBonus(j);
+                bonus += calculateSpareBonus(frameIndex);
             } else if (currentFrame.isStrike()) {
-                bonus += calculateStrikeBonus(j);
+                bonus += calculateStrikeBonus(frameIndex);
                 }
         }
         return bonus;
@@ -135,27 +138,43 @@ public class BowlingGame {
         return frameIndex < frames.size();
     }
 
+
+    /**
+     * Creates frames from the recorded rolls.
+     */
     private void createFrames() {
-        for (int i = 0; i < rolls.size(); i++) {
+        for (int rollIndex = 0; rollIndex < rolls.size(); rollIndex++) {
 
             if (isTenthFrame()) {
-                createTenthFrame(i);
+                createTenthFrame(rollIndex);
                 break;
             }
-            if (isStrikeRoll(i)) { // Strike
+            if (isStrikeRoll(rollIndex)) {
                 frames.add(new Frame(STRIKE_PINS));
             } else {
-                frames.add(new Frame(rolls.get(i), rolls.get(i + 1)));
-                i++;
+                frames.add(new Frame(rolls.get(rollIndex), rolls.get(rollIndex + 1)));
+                rollIndex++;
             }
 
         }
     }
 
+
+    /**
+     * Checks if the roll at the given index is a strike.
+     *
+     * @param rollIndex the index of the roll to check
+     * @return true if the roll is a strike, false otherwise
+     */
     private boolean isStrikeRoll(int rollIndex) {
         return rolls.get(rollIndex) == STRIKE_PINS;
     }
 
+    /**
+     * Creates the tenth frame (special case) from the recorded rolls.
+     *
+     * @param startIndex the starting index of the tenth frame rolls
+     */
     private void createTenthFrame(int startIndex) {
         int firstRoll = rolls.get(startIndex);
         int secondRoll = rolls.get(startIndex + 1);
@@ -167,10 +186,22 @@ public class BowlingGame {
 
     }
 
+
+    /**
+     * Checks if the current frame is the tenth frame.
+     *
+     * @return true if it's the tenth frame, false otherwise
+     */
     private boolean isTenthFrame() {
-        return frames.size() == 9;
+        return frames.size() == MAX_FRAMES - 1;
     }
 
+
+    /**
+     * Checks if the game is over (i.e., no more rolls are allowed).
+     *
+     * @return true if the game is over, false otherwise
+     */
     private boolean isGameOver() {
         int currentFrame = calculateCurrentFrame();
 
@@ -181,6 +212,12 @@ public class BowlingGame {
         return isTenthFrameComplete();
     }
 
+
+    /**
+     * Calculates the current frame number based on the recorded rolls.
+     *
+     * @return the current frame number
+     */
     private int calculateCurrentFrame() {
         int frame = 0;
         int rollIndex = 0;
@@ -197,6 +234,12 @@ public class BowlingGame {
         return frame;
     }
 
+
+    /**
+     * Checks if the tenth frame is complete based on the recorded rolls.
+     *
+     * @return true if the tenth frame is complete, false otherwise
+     */
     private boolean isTenthFrameComplete() {
         int tenthFrameStartIndex = findTenthFrameStartIndex();
         int rollsInTenth = rolls.size() - tenthFrameStartIndex;
@@ -209,9 +252,15 @@ public class BowlingGame {
         int secondRoll = rolls.get(tenthFrameStartIndex + 1);
         boolean deservesThirdRoll = (firstRoll == STRIKE_PINS) || (firstRoll + secondRoll == STRIKE_PINS);
 
-        return deservesThirdRoll ? rollsInTenth >= 3 : true;
+        return !deservesThirdRoll || rollsInTenth >= 3;
     }
 
+
+    /**
+     * Finds the starting index of the tenth frame in the recorded rolls.
+     *
+     * @return the starting index of the tenth frame
+     */
     private int findTenthFrameStartIndex() {
         int rollIndex = 0;
         for (int frame = 0; frame < MAX_FRAMES - 1 && rollIndex < rolls.size(); frame++) {
