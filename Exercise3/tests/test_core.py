@@ -7,7 +7,6 @@ from game_of_life.core import GameOfLife
 def world(s: str, boundary: str = "bounded") -> GameOfLife:
     return GameOfLife.from_string(s, boundary=boundary)
 
-
 def test_from_to_string_roundtrip():
     s = """
 ....
@@ -39,7 +38,7 @@ def test_rules_under_over_and_birth():
     g.set_alive(1, 0, True)
     g.set_alive(1, 2, True)
     g.tick()
-    assert g.is_alive(1, 1) is False          # dies
+    assert g.is_alive(1, 1) is False  # dies
     # corners are born due to exactly 3 neighbors
     assert g.is_alive(0, 0) is True
     assert g.is_alive(2, 0) is True
@@ -100,3 +99,4 @@ def test_torus_wraps_reads():
     g.tick()
     # A single cell has 0 neighbors on torus as well -> dies
     assert all(not g.is_alive(x, y) for y in range(g.height) for x in range(g.width))
+
